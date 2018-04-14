@@ -1,15 +1,11 @@
-import json
-data=json.load(open("imdb.json"))
-list=[]
-for i in range(len(data)):
-    if "Action" in data[i]["genre"]:
-        if(data[i]["imdb_score"]==8.8):
-            list.append(i)
-           
-for i in list:
-    print("Director:"+data[i]["director"])
-    print("Movie:"+data[i]["name"])
-    print("\n")
+import pandas as pd
+
+df=pd.read_json("imdb.json")
+df.to_csv('results.csv')
+df1=pd.read_csv('results.csv')
+
+df2=df1[df1['genre'].str.contains('Action') ]
+print(df2.loc[df2.sort_values('imdb_score',ascending=False).index,['name','director']].head(3))
                   
-    Here first I parsed the json file in python then  scanned every member of list using loop and if then member sublist contain 
-    "Action" in Genre then there in IF condition I compared the Imdb Rating of movie then displayed the result. 
+here firstly using pandas converted the json format file into csv file then using panda functions read the csv file then after that firstly 
+filter the movies which contain action then after that sort the imdb_score by descending and printed the required fields..!!

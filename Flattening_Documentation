@@ -1,0 +1,17 @@
+def fun(Lis):
+    res = []
+    for i in Lis:
+        if type(i) is int:
+            res.append(i)
+        else:
+            res += fun(i)
+    return res
+
+x = [[1, 2, [3]], 4]
+print(fun(x))
+
+For Flattening the list I created a function.
+      In that function created an empty list "res"
+      and executed a loop if  the list passed in function contains single integer then it is appended to newly created list ie "res"
+      and if list contain another list then function is calling itself ie, Recursive Calling and then also if that sublist contain single integer 
+      then added to "res" list.
